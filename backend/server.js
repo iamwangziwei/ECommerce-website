@@ -1,5 +1,5 @@
-import express from 'express';
-import data from './data.js';
+import express from "express";
+import data from "./data.js";
 const app = express();
 
 app.get("/api/products/:id", (req, res) => {
@@ -11,14 +11,13 @@ app.get("/api/products/:id", (req, res) => {
   }
 });
 
-
-app.get('/api/products', (req,res)=>{
-    res.send(data.products);
+app.get("/api/products", (req, res) => {
+  res.send(data.products);
 });
-app.get('/',(req,res) => {
-    res.send('server is ready');
+app.get("/", (req, res) => {
+  res.send("server is ready");
 });
 const port = process.env.PORT || 5002;
-app.listen(port, ()=>{
-    console.log('server at 5002');
+app.listen(port, () => {
+  console.log("server at 5002");
 });
