@@ -18,15 +18,16 @@ userRouter.get(
 
 userRouter.post(
   "/signin",
-  expressAsyncHandler(async (res, req) => {
+  expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         res.send({
-          _id: user.id,
+          _id: user._id,
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          isSeller: user.isSeller,
           token: generateToken(user),
         });
         return;
@@ -35,5 +36,4 @@ userRouter.post(
     res.status(401).send({ message: "Invalid email or password" });
   })
 );
-
 export default userRouter;
