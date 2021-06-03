@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveShippingAdress } from "../actions/cartAction";
+import { saveShippingAddress } from "../actions/cartAction";
 import CheckoutSteps from "../components/CheckoutSteps";
 
-export default function ShippingAdressScreen(props) {
+export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const cart = useSelector((state) => state.cart);
@@ -11,16 +11,16 @@ export default function ShippingAdressScreen(props) {
   if (!userInfo) {
     props.history.push("/signin");
   }
-  const [fullname, setFullname] = useState(shippingAddress.fullname);
-  const [adress, setAdress] = useState(shippingAddress.adress);
+  const [fullName, setFullName] = useState(shippingAddress.fullName);
+  const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
-  const [postalcode, setPostalcode] = useState(shippingAddress.postalcode);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveShippingAdress({ fullname, adress, city, postalcode, country })
+      saveShippingAddress({ fullName, address, city, postalCode, country })
     );
     props.history.push("/payment");
   };
@@ -29,31 +29,27 @@ export default function ShippingAdressScreen(props) {
       <CheckoutSteps step1 step2></CheckoutSteps>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Shipping Adress</h1>
+          <h1>Shipping Address</h1>
         </div>
         <div>
-          <label htmlFor="fullname">Full Name</label>
+          <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
-            id="fullname"
+            id="fullName"
             placeholder="Enter full name"
-            value={fullname}
-            onChange={(e) => {
-              setFullname(e.target.value);
-            }}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="adress">Adress</label>
+          <label htmlFor="address">Address</label>
           <input
             type="text"
-            id="adress"
-            placeholder="Enter adress"
-            value={adress}
-            onChange={(e) => {
-              setAdress(e.target.value);
-            }}
+            id="address"
+            placeholder="Enter address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             required
           ></input>
         </div>
@@ -64,22 +60,18 @@ export default function ShippingAdressScreen(props) {
             id="city"
             placeholder="Enter city"
             value={city}
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
+            onChange={(e) => setCity(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="postalcode">Postal Code</label>
+          <label htmlFor="postalCode">Postal Code</label>
           <input
             type="text"
-            id="postalcode"
-            placeholder="Enter postalcode"
-            value={postalcode}
-            onChange={(e) => {
-              setPostalcode(e.target.value);
-            }}
+            id="postalCode"
+            placeholder="Enter postal code"
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
             required
           ></input>
         </div>
@@ -90,13 +82,12 @@ export default function ShippingAdressScreen(props) {
             id="country"
             placeholder="Enter country"
             value={country}
-            onChange={(e) => {
-              setCountry(e.target.value);
-            }}
+            onChange={(e) => setCountry(e.target.value)}
             required
           ></input>
         </div>
         <div>
+          <label />
           <button className="primary" type="submit">
             Continue
           </button>

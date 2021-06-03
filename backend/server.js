@@ -29,13 +29,16 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
 //   res.send(data.products);
 // });
 
+//apply the middleware funtion userRouter to all the route that match with /api/users/...
 app.use("/api/users", userRouter);
+
 app.use("/api/products", productRouter);
 app.get("/", (req, res) => {
   res.send("server is ready");
 });
 
-app.use((err, req, res, next) => {
+//apply this middleware function to any route bellow
+app.use((err, req, res) => {
   res.status(500).send({ message: err.message });
 });
 

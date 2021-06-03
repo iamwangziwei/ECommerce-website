@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import CheckoutSteps from "../components/CheckoutSteps";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../actions/cartAction";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function PaymentMethodScreen(props) {
   const cart = useSelector((state) => state.cart);
@@ -9,11 +9,11 @@ export default function PaymentMethodScreen(props) {
   if (!shippingAddress.address) {
     props.history.push("/shipping");
   }
-  const [PaymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(savePaymentMethod(PaymentMethod));
+    dispatch(savePaymentMethod(paymentMethod));
     props.history.push("/placeorder");
   };
   return (
