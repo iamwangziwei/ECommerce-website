@@ -1,6 +1,7 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
+import { orderCreateReducer } from "./reducers/orderReducer";
 import {
   productDetailsReducer,
   productListReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducer,
 });
 
 // connect to chrome developer tools
