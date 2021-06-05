@@ -28,7 +28,7 @@ function App() {
           <div>
             {/* link to the home page  */}
             <Link className="brand" to="/">
-              amazona
+              amz
             </Link>
           </div>
           <div>
@@ -67,9 +67,7 @@ function App() {
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
-        <footer className="row center">
-          ©2021 Ziwei. All rights reserved.
-        </footer>
+        <footer className="row center">©2021 amz. All rights reserved.</footer>
       </div>
     </BrowserRouter>
   );
