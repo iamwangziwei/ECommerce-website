@@ -5,6 +5,7 @@ import productRouter from "./Routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import dotenv from "dotenv";
 import orderRouter from "./Routers/orderRouter.js";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -40,9 +41,14 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
 
-app.get("/", (req, res) => {
-  res.send("server is ready");
-});
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
+// app.get("/", (req, res) => {
+//   res.send("server is ready");
+// });
 
 //apply this middleware function to any route bellow
 app.use((err, req, res) => {
